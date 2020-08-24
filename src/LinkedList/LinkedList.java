@@ -55,6 +55,40 @@ public class LinkedList
         head = currNode;
     }
     
+    void insertAtPosition(int position,int value){
+        if(head==null||position<0) return;
+        Node newNode = new Node(value);
+        if(position==0){
+            newNode.next=head;
+            head=newNode;
+            return;
+        }
+        Node temp = head;
+        Node prev = null;
+        
+        while(temp!=null&&position-->0){
+            prev=temp;
+            temp=temp.next;
+        }
+        if(temp!=null||position==0){
+            prev.next=newNode;
+            newNode.next=temp;
+        }
+        
+    }
+    
+    int getAtPosition(int position){
+        if(head==null||position<0) return -1;
+        Node temp = head;
+        while(temp!=null && position>0){
+            temp=temp.next;
+            position--;
+        }
+        if(temp!=null) return temp.data;
+        return -1;
+        
+    }
+    
     void deleteNodeAtPosition(int position){
         if(head == null) return;
         if(position == 0){

@@ -10,7 +10,18 @@ public class MainClass
         linkedList.insertAtEnd(new Node(3));
         linkedList.insertAtEnd(new Node(4));
         linkedList.printList();
+        linkedList.insertAtPosition(0,5);
+        linkedList.printList();
+        System.out.println(linkedList.getAtPosition(2));
+        System.out.println(linkedList.getAtPosition(0));
+        System.out.println(linkedList.getAtPosition(3));
+        System.out.println(linkedList.getAtPosition(5));
+        linkedList.deleteNodeAtPosition(0);
+        linkedList.deleteNodeAtPosition(2);
         linkedList.deleteNodeAtPosition(3);
+        linkedList.printList();
+        linkedList.getAtPosition(3);
+        linkedList.insertAtPosition(3,10);
         linkedList.printList();
     }
 }
