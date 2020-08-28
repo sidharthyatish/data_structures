@@ -112,4 +112,15 @@ public class LinkedList
             return 0;
         return 1+getLength(node.next);
     }
+    
+    Node constructLinkedList(int nums[]){
+        int length = nums.length;
+        if(nums.length>0){
+            int index=length-1;
+            while(index>=0){
+                insertAtBeginning(new Node(nums[index--]));
+            }
+        }
+        return this.head;
+    }
 }
