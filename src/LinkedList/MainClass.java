@@ -2,73 +2,21 @@ package LinkedList;
 
 public class MainClass
 {
-    public static Node oddEvenLL(Node head){
-        if(head==null||head.next==null) return null;
-        Node oddHead = head;
-        Node tempOdd = head;
-        Node evenHead = head.next;
-        Node tempEven = head.next;
-        //If odd & even are traversed separately, then leads to wrong result as links are already changed
-        while(tempOdd!=null&&tempOdd.next!=null&&tempEven!=null&&tempEven.next!=null){
-            tempOdd.next=tempEven.next;
-            tempOdd=tempOdd.next;
-            tempEven.next=tempOdd.next;
-            tempEven=tempEven.next;
-        }
-        tempOdd.next=evenHead;
-        return oddHead;
-    }
     
-    public static Node reverseAtIndex(Node head,int index){
-        if(head==null||head.next==null) return head;
-        
-        Node temp = head;
-        while(temp!=null&&temp.next!=null&&index-->0){
-            Node next = temp.next;
-            temp.next=temp.next.next;
-            next.next = head;
-            head = next;
-        }
-        return head;
-    }
-    
-    public static boolean checkIfPalindrome(Node head){
-        if(head==null||head.next==null) return true;
-        Node fastNode = head;
-        Node midNode = head;
-        int midPosition=0;
-        while(fastNode!=null&&fastNode.next!=null){
-            fastNode=fastNode.next.next;
-            midNode=midNode.next;
-            midPosition++;
-        }
-        //if fastNode.next==null it means there were odd number of nodes. if fastNode == null it means there were odd number of nodes
-        //Move the mid node if odd number of nodes are present
-        if(fastNode!=null){
-            midNode=midNode.next;
-        }
-        
-        head = reverseAtIndex(head,midPosition-1); //have to reverse just before the mid (reverse)mid(rest-half)
-        Node temp = head;
-        
-        while(midNode!=null){
-            
-            if(temp.data!=midNode.data) return false;
-            temp=temp.next;
-            midNode=midNode.next;
-        }
-        return true;
-    }
     public static void main(String[] args)
     {
-//        testBasicOperations();
-//        testOddEvenLL();
-        LinkedList linkedList = new LinkedList();
-        linkedList.constructLinkedList(new int[]{1,2,1});
-        linkedList.printList();
-        System.out.println(checkIfPalindrome(linkedList.head));
+        LinkedList l1 = new LinkedList();
+        l1.constructLinkedList(new int[]{0,0,9});
+        LinkedList l2 = new LinkedList();
+        l2.constructLinkedList(new int[]{0,0,9});
+        LinkedList sum = new LinkedList();
+        l1.printList();
+        l2.printList();
+        sum.head = LeetCodeProblems.addTwoNumbers(l1.head,l2.head);
+        sum.printList();
         
     }
+    
     
     private static void testBasicOperations()
     {
@@ -103,7 +51,7 @@ public class MainClass
         oddEvenList.insertAtEnd(new Node(5));
         oddEvenList.insertAtEnd(new Node(6));
         oddEvenList.printList();
-        oddEvenList.head = oddEvenLL(oddEvenList.head);
+        oddEvenList.head = LeetCodeProblems.oddEvenLL(oddEvenList.head);
         oddEvenList.printList();
     }
 }
