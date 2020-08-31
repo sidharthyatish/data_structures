@@ -1,20 +1,45 @@
 package LinkedList;
 
+import sun.awt.image.ImageWatched;
+
 public class MainClass
 {
     
     public static void main(String[] args)
     {
-        LinkedList l1 = new LinkedList();
-        l1.constructLinkedList(new int[]{0,0,9});
-        LinkedList l2 = new LinkedList();
-        l2.constructLinkedList(new int[]{0,0,9});
-        LinkedList sum = new LinkedList();
-        l1.printList();
-        l2.printList();
-        sum.head = LeetCodeProblems.addTwoNumbers(l1.head,l2.head);
-        sum.printList();
+        LinkedList ll = new LinkedList();
+        ll.constructLinkedList(new int[]{0,1,2});
+        ll.printList();
+        ll.head = LeetCodeProblems.rotateRightByK2(ll.head,4);
+        ll.printList();
         
+    }
+    
+    private static void flattenMultiLevelLL()
+    {
+        MultiLevelDoulyLL mLL = new MultiLevelDoulyLL();
+        mLL.head = new ListNode(1);
+        mLL.head.next = new ListNode(2);
+        mLL.head.next.prev= mLL.head;
+        mLL.head.next.next = new ListNode(3);
+        mLL.head.next.next.prev = mLL.head.next;
+        mLL.head.next.next.next = new ListNode(4);
+        mLL.head.next.next.next.prev = mLL.head.next.next;
+        mLL.head.next.next.next.next = new ListNode(5);
+        mLL.head.next.next.next.next.prev = mLL.head.next.next.next;
+        mLL.head.next.next.child = new ListNode(6);
+        mLL.head.next.next.child.next = new ListNode(7);
+        mLL.head.next.next.child.next.prev = mLL.head.next.next.child;
+        mLL.head.next.next.child.next.next = new ListNode(8);
+        mLL.head.next.next.child.next.next.prev = mLL.head.next.next.child.next;
+        mLL.head.next.next.child.next.child = new ListNode(9);
+        mLL.head.next.next.child.next.child.next = new ListNode(10);
+        mLL.head.next.next.child.next.child.next.prev = mLL.head.next.next.child.next.child;
+        mLL.printList();
+        
+        MultiLevelDoulyLL flattenedList = new MultiLevelDoulyLL();
+        flattenedList.head = mLL.flattenList();
+        flattenedList.printList();
     }
     
     

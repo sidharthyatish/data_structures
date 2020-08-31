@@ -129,4 +129,74 @@ public class LeetCodeProblems
         
         return resultHead.next;
     }
+    
+    public static Node rotateRightByK(Node head,int k){
+        //This solution is very slow. Better solution is finding the length and position = length-(k%length)-1 (-1 to point to before node)
+        // rotateRightByK2 has the better solution
+        if(head==null||head.next==null) return head;
+        
+        //Move fast pointer until k becomes zero. if Node is null, make node head (like a circular list)
+        
+        Node fastNode = head;
+        Node slowNode = head;
+        while(k>0){
+            
+            if(fastNode.next==null) fastNode = head;
+            else fastNode = fastNode.next;
+            k--;
+        }
+        
+        //Move slow node now until fast.next becomes null. We are at n nodes from tail
+        while(fastNode!=null&&fastNode.next!=null){
+            slowNode=slowNode.next;
+            fastNode=fastNode.next;
+        }
+        
+        //slowNode is just before the rotation point
+        
+        if(slowNode!=null&&slowNode.next!=null){
+            Node next = slowNode.next;
+            slowNode.next=null;
+            Node temp = next;
+            while(temp.next!=null) temp=temp.next;
+            temp.next=head;
+            head=next;
+        }
+        return head;
+        
+    }
+    public static Node rotateRightByK2(Node head,int k){
+        if(head==null||head.next==null) return head;
+        int length=0;
+        Node temp = head;
+        
+        while(temp!=null){
+            length++;
+            temp=temp.next;
+        }
+        
+        int pos = k%length;
+        
+        //Will be at a node just before the pos number of nodes
+        int positionsToMove = length-pos-1;
+        temp = head;
+        
+        //We reach there and store the next. Set next as null, set the stored next as head. we need to reach the end the link it to first half
+        
+        //Change the next of the kth node to NULL.
+        //Change the next of the last node to the previous head node.
+        //Change the head to (k+1)th node.
+        
+        for(int i=0;i<positionsToMove;i++) temp=temp.next;
+        
+        if(temp!=null&&temp.next!=null){
+            Node next= temp.next;
+            temp.next=null;
+            Node end = next;
+            while (end.next!=null) end=end.next;
+            end.next=head;
+            head=next;
+        }
+        return head;
+    }
 }
