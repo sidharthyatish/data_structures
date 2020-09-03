@@ -15,7 +15,7 @@ class ListNode{
         this.child=null;
     }
 }
-public class MultiLevelDoulyLL
+class MultiLevelDoulyLL
 {
     ListNode head;
     

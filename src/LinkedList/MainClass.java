@@ -12,6 +12,7 @@ public class MainClass
         ll.printList();
         ll.head = LeetCodeProblems.rotateRightByK2(ll.head,4);
         ll.printList();
+        flattenMultiLevelLL();
         
     }
     
